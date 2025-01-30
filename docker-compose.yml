@@ -10,4 +10,7 @@ services:
             - MYSQL_PASSWORD=admin
         ports:
             - 3306:3306
+        volumes:
+            - ./mysqldata:/var/lib/mysql
+            - ./src/main/resources/sql/schema.sql:/docker-entrypoint-initdb.d/
         image: mysql:8.0
