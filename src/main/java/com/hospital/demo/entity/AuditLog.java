@@ -12,6 +12,7 @@ public class AuditLog {
     private Long id;
     private String action; // e.g., "CREATE_PATIENT", "UPDATE_RECORD"
     private String username;
+    private String details;
     private LocalDateTime timestamp;
 
     public  void setAction(String str){
