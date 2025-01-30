@@ -13,4 +13,19 @@ public class AuditLog {
     private String action; // e.g., "CREATE_PATIENT", "UPDATE_RECORD"
     private String username;
     private LocalDateTime timestamp;
+
+    public  void setAction(String str){
+
+
+    }
+
+    public  void setUsername(String str){
+        
+
+    }
+
+    public  void setTimestamp(LocalDateTime time){
+        
+
+    }
 }
