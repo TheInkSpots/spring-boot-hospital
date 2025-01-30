@@ -13,6 +13,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private int roleId;
     
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();

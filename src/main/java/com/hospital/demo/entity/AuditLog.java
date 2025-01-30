@@ -15,18 +15,19 @@ public class AuditLog {
     private String details;
     private LocalDateTime timestamp;
 
-    public  void setAction(String str){
+    // no need setters, Lombok generates getters/setters automatically
+    // public  void setAction(String str){
 
 
-    }
+    // }
 
-    public  void setUsername(String str){
+    // public  void setUsername(String str){
         
 
-    }
+    // }
 
-    public  void setTimestamp(LocalDateTime time){
+    // public  void setTimestamp(LocalDateTime time){
         
 
-    }
+    // }
 }

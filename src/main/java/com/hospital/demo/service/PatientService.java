@@ -13,6 +13,21 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
+
+    // Create a new patient record
+    @Transactional
+    public Patient createPatient(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    // Retrieve a patient by ID
+    @Transactional(readOnly = true)
+    public Patient getPatientById(Long id) {
+        return patientRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Patient not found with ID: " + id));
+    }
+
+    
     // Lock a record
     @Transactional
     public boolean lockRecord(Long id, String username) {

@@ -9,5 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmailService {
   public static void send(String to, String message) {
     // Implement SendGrid API logic here
+
+     // Replace with actual email logic (e.g., SendGrid, JavaMail)
+     System.out.println("Sending email to: " + to);
+     System.out.println("Message: " + message);
+     
   }
 }

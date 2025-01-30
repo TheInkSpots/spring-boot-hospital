@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.hospital.demo.service.CustomUserDetailsService;
+
 import org.springframework.security.core.userdetails.User;
 
 
@@ -18,6 +20,11 @@ import org.springframework.security.core.userdetails.User;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final CustomUserDetailsService customUserDetailsService;
+
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
     // @Bean
     // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     //     http
@@ -41,7 +48,10 @@ public class SecurityConfig {
             .requestMatchers("/api/admin/**").hasRole("ADMIN")
             .anyRequest().authenticated()
         )
-        .httpBasic();
+        .userDetailsService(customUserDetailsService) // Use the custom service
+            .formLogin()
+            .and()
+            .httpBasic();
         return http.build();
     }
 
