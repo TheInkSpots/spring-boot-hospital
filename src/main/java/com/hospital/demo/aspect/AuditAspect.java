@@ -1,4 +1,4 @@
-package com.hospital.demo.config.aspect;
+package com.hospital.demo.aspect;
 
 import com.hospital.demo.entity.AuditLog;
 import com.hospital.demo.repository.AuditLogRepository;

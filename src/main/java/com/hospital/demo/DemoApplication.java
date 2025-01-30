@@ -25,8 +25,7 @@ public class DemoApplication {
 			String[] beanNames = ctx.getBeanDefinitionNames();
 			Arrays.sort(beanNames);
 			for (String beanName : beanNames) {
-				System.out.println(beanName);
-				System.out.println("--------momo==========");
+				System.out.print(beanName + " > ");
 			}
 
 		};
