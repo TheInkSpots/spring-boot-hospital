@@ -7,10 +7,36 @@ services:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_DATABASE=prms
             - MYSQL_USER=admin
-            - MYSQL_PASSWORD=admin
+            - MYSQL_PASSWORD=admins
         ports:
             - 3306:3306
         volumes:
             - ./mysqldata:/var/lib/mysql
-            - ./src/main/resources/sql/schema.sql:/docker-entrypoint-initdb.d/
+            - ./src/main/resources/sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+        networks:
+             - hospital-network
+        restart: unless-stopped
         image: mysql:8.0
+
+    phpmyadmin:
+        image: phpmyadmin:latest
+        platform: linux/arm64/v8  # For Apple Silicon compatibility
+        container_name: phpmyadmin
+        depends_on:
+            - mysql
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+            PMA_USER: admin
+            PMA_PASSWORD: admins  # Match MYSQL_PASSWORD above
+        networks:
+            - hospital-network
+        ports:
+            - "8080:80"
+        restart: unless-stopped
+
+volumes:
+    mysqldata:
+
+networks:
+    hospital-network:

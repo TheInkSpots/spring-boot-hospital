@@ -44,6 +44,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
         .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/api/register").permitAll() // Allow registration without aut
             .requestMatchers("/api/patients/**").hasAnyRole("NURSE", "DOCTOR")
             .requestMatchers("/api/admin/**").hasRole("ADMIN")
             .anyRequest().authenticated()
@@ -74,4 +75,5 @@ public class SecurityConfig {
             .build();
         return new InMemoryUserDetailsManager(doctor, nurse);
     }
+
 }
