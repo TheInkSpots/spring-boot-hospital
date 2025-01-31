@@ -2,6 +2,9 @@ package com.hospital.demo.controller;
 
 import com.hospital.demo.entity.Patient;
 import com.hospital.demo.service.PatientService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +20,12 @@ public class PatientController {
     @PostMapping
     public Patient createPatient(@RequestBody Patient patient) {
         return patientService.createPatient(patient);
+    }
+
+    @PostMapping("/bulk")
+    public ResponseEntity<List<Patient>> createPatients(@RequestBody List<Patient> patients) {
+        List<Patient> createdPatients = patientService.createPatients(patients);
+        return ResponseEntity.ok(createdPatients);
     }
 
     @GetMapping("/{id}")

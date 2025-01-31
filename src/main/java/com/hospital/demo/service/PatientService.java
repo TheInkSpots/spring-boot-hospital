@@ -3,6 +3,9 @@ package com.hospital.demo.service;
 
 import com.hospital.demo.entity.Patient;
 import com.hospital.demo.repository.PatientRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +23,11 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
+    @Transactional
+    public List<Patient> createPatients(List<Patient> patients) {
+        return patientRepository.saveAll(patients);
+    }
+
     // Retrieve a patient by ID
     @Transactional(readOnly = true)
     public Patient getPatientById(Long id) {
@@ -27,7 +35,7 @@ public class PatientService {
             .orElseThrow(() -> new RuntimeException("Patient not found with ID: " + id));
     }
 
-    
+
     // Lock a record
     @Transactional
     public boolean lockRecord(Long id, String username) {
