@@ -100,22 +100,22 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        UserDetails doctor = User.builder()
-            .username("doctor")
-            .password(passwordEncoder().encode("password"))
-            .roles("DOCTOR")
-            .build();
+    // @Bean
+    // public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+    //     UserDetails doctor = User.builder()
+    //         .username("doctor")
+    //         .password(passwordEncoder().encode("password"))
+    //         .roles("DOCTOR")
+    //         .build();
 
-        UserDetails nurse = User.builder()
-            .username("nurse")
-            .password(passwordEncoder().encode("password"))
-            .roles("NURSE")
-            .build();
+    //     UserDetails nurse = User.builder()
+    //         .username("nurse")
+    //         .password(passwordEncoder().encode("password"))
+    //         .roles("NURSE")
+    //         .build();
 
-        return new InMemoryUserDetailsManager(doctor, nurse);
-    }
+    //     return new InMemoryUserDetailsManager(doctor, nurse);
+    // }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

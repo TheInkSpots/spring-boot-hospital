@@ -3,6 +3,7 @@ package com.hospital.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,28 +30,28 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                loginRequest.getUsername(),
-                loginRequest.getPassword()
-            )
-        );
-
-        UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
-        String token = jwtUtils.generateToken(userDetails);
-        return ResponseEntity.ok(token);
-
-        // Authenticate using the manager
-        // Authentication authentication = authenticationManager.authenticate(
+        // authenticationManager.authenticate(
         //     new UsernamePasswordAuthenticationToken(
         //         loginRequest.getUsername(),
         //         loginRequest.getPassword()
         //     )
         // );
 
-        // // Generate JWT token
-        // UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        // UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
         // String token = jwtUtils.generateToken(userDetails);
         // return ResponseEntity.ok(token);
+
+        // Authenticate using the manager
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                loginRequest.getUsername(),
+                loginRequest.getPassword()
+            )
+        );
+
+        // Generate JWT token
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String token = jwtUtils.generateToken(userDetails);
+        return ResponseEntity.ok(token);
     }
 }
