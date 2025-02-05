@@ -1,7 +1,8 @@
 name: spring-hospital
 services:
     mysql:
-        platform: linux/arm64
+        #platform: linux/arm64
+        platform: linux/amd64
         container_name: mysql-db
         environment:
             - MYSQL_ROOT_PASSWORD=root
@@ -20,7 +21,8 @@ services:
 
     phpmyadmin:
         image: phpmyadmin:latest
-        platform: linux/arm64/v8  # For Apple Silicon compatibility
+        #platform: linux/arm64/v8  # For Apple Silicon compatibility
+        platform: linux/amd64
         container_name: phpmyadmin
         depends_on:
             - mysql
