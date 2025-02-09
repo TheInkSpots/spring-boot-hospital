@@ -1,3 +1,5 @@
+```docker-compose up -d```
+
 ```mvn spring-boot: run```
 
 When designing a backend server for a hospital patient record management system, it's important to choose design patterns that promote modularity, scalability, security, and maintainability. Here are several design patterns and architectural approaches that are especially relevant:
